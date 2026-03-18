@@ -1,127 +1,161 @@
-# 🚀 Workshop de Module Federation con React
+# 🚀 Module Federation Workshop with React
 
-Workshop práctico de Microfrontends utilizando **Module Federation** de Webpack 5.
 
-## 📁 Estructura del Proyecto
+
+##  Prerequisites
+
+Before starting, make sure you have the following installed:
+
+### ⚡ Quick Start
+
+**New to this project?** Check these resources first:
+- 📘 [Node.js Setup Guide](./NODEJS_SETUP.md) - Detailed Node.js installation
+
+### Required Software
+
+#### Node.js (v22.21.1)
+
+This project requires **Node.js version 22.21.1**. We recommend using a version manager:
+
+
+## 📁 Project Structure
 
 ```
 mfe-workshop/
 ├── host/           # Aplicación principal (Host)
-├── header/         # MFE: Header (EQUIPO 1)
-├── products/       # MFE: Productos (EQUIPO 2)
-└── cart/           # MFE: Carrito (EQUIPO 3)
+├── header/         # MFE: Header (TEAM 1)
+├── products/       # MFE: Products (TEAM 2)
+├── cart/           # MFE: Cart (TEAM 3)
+└── home/           # MFE: Home (TEAM 4)
 ```
 
-## 🎯 Objetivo del Workshop
+## 🎯 Workshop Objective
 
-Demostrar cómo diferentes equipos pueden trabajar de forma **independiente** en diferentes partes de una aplicación web usando Module Federation.
+Demonstrate how different teams can work **independently** on different parts of a web application using Module Federation.
 
-**La aplicación tiene 3 páginas:**
-- **Inicio** (`/`): Página de bienvenida con tarjetas de navegación
-- **Productos** (`/productos`): Catálogo de productos (MFE independiente)
-- **Carrito** (`/carrito`): Carrito de compras (MFE independiente)
+**The application has 3 pages:**
+- **Home** (`/`): Landing page with offers, banners, and recommendations (Independent MFE)
+- **Products** (`/productos`): Product catalog (Independent MFE)
+- **Cart** (`/carrito`): Shopping cart (Independent MFE)
 
-## 👥 División de Equipos
 
-### **EQUIPO 1: Header** 
-- **Puerto**: 3001
-- **Carpeta**: `/header`
-- **Responsabilidad**: Navegación y cabecera de la aplicación
+### Detailed Team Responsibilities
 
-### **EQUIPO 2: Products**
-- **Puerto**: 3002
-- **Carpeta**: `/products`
-- **Responsabilidad**: Catálogo de productos y tarjetas de producto
+### **TEAM 1: Header** 
+- **Port**: 3001
+- **Folder**: `/header`
+- **Responsibility**: Navigation and application header
 
-### **EQUIPO 3: Cart**
-- **Puerto**: 3003
-- **Carpeta**: `/cart`
-- **Responsabilidad**: Carrito de compras y checkout
+### **TEAM 2: Products**
+- **Port**: 3002
+- **Folder**: `/products`
+- **Responsibility**: Product catalog and product cards
+
+### **TEAM 3: Cart**
+- **Port**: 3003
+- **Folder**: `/cart`
+- **Responsibility**: Shopping cart and checkout
+
+### **TEAM 4: Home** ⭐ NEW!
+- **Port**: 3004
+- **Folder**: `/home`
+- **Responsibility**: Landing page with hero banners, featured products, categories, and promotions
 
 ### **Host Application**
-- **Puerto**: 3000
-- **Carpeta**: `/host`
-- **Responsabilidad**: Orquestación y ensamblaje de todos los MFEs
+- **Port**: 3000
+- **Folder**: `/host`
+- **Responsibility**: Orchestration and assembly of all MFEs
 
-## 🔧 Instalación
+## 🔧 Installation
 
-Cada equipo debe instalar las dependencias de su aplicación:
+### Step 1: Verify Node.js Version
 
 ```bash
-# EQUIPO 1
+node --version
+# Should output: v22.21.1
+```
+### Step 2: Install Dependencies
+
+Each team must install the dependencies for their application. You have two options:
+
+From the root directory, run:
+
+```bash
+# Install dependencies for all microfrontends and host
+cd header && npm install 
+cd products && npm install 
+cd cart && npm install 
+cd home && npm install
+cd host && npm install 
+```
+
+
+
+
+
+## ▶️ Running the Application
+
+### ⚠️ IMPORTANT: Start Order
+
+**You MUST start the remotes BEFORE the host**
+
+The host app depends on the remote microfrontends being available. If you start the host first, you'll see errors or a blank page.
+
+### Option 1: Manual Start (RECOMMENDED for workshop)
+
+Open 5 separate terminal windows/tabs:
+
+**Terminal 1 - Header (TEAM 1):**
+```bash
 cd header
-npm install
-
-# EQUIPO 2
-cd products
-npm install
-
-# EQUIPO 3
-cd cart
-npm install
-
-# Host (coordinador del workshop)
-cd host
-npm install
-```
-
-## ▶️ Ejecución
-
-### ⚠️ IMPORTANTE: Orden de inicio
-
-**Debes iniciar los remotes ANTES que el host**
-
-### Opción 1: Ejecución manual (RECOMENDADO para el workshop)
-
-Abre 4 terminales separadas:
-
-**Terminal 1 - Header:**
-```bash
-cd header
 npm start
 ```
-Espera a ver: `webpack compiled successfully`
+Wait until you see: ✅ `webpack compiled successfully`
 
-**Terminal 2 - Products:**
+**Terminal 2 - Products (TEAM 2):**
 ```bash
 cd products
 npm start
 ```
-Espera a ver: `webpack compiled successfully`
+Wait until you see: ✅ `webpack compiled successfully`
 
-**Terminal 3 - Cart:**
+**Terminal 3 - Cart (TEAM 3):**
 ```bash
 cd cart
 npm start
 ```
-Espera a ver: `webpack compiled successfully`
+Wait until you see: ✅ `webpack compiled successfully`
 
-**Terminal 4 - Host:**
+**Terminal 4 - Home (TEAM 4):** ⭐ NEW!
+```bash
+cd home
+npm start
+```
+Wait until you see: ✅ `webpack compiled successfully`
+
+**Terminal 5 - Host (Start LAST):**
 ```bash
 cd host
 npm start
 ```
+Wait until you see: ✅ `webpack compiled successfully`
 
-Una vez que veas `webpack compiled successfully` en todas las terminales, abre:
-**http://localhost:3000**
+Once you see `webpack compiled successfully` in **ALL** terminals, open:
+**http://localhost:3000** 🎉
 
-### Opción 2: Script automatizado
 
-```bash
-./start-all.sh
-```
 
-**Nota:** Este script inicia todo a la vez. Si ves pantalla en blanco, es mejor usar la Opción 1.
 
-## 🌐 URLs de Desarrollo
+## 🌐 Devs Urls
 
-- **Host App**: http://localhost:3000 (aplicación principal)
-  - **Inicio**: http://localhost:3000/
-  - **Productos**: http://localhost:3000/productos
-  - **Carrito**: http://localhost:3000/carrito
+- **Host App**: http://localhost:3000 (main application)
+  - **Home**: http://localhost:3000/
+  - **Products**: http://localhost:3000/productos
+  - **Cart**: http://localhost:3000/carrito
 - **Header MFE**: http://localhost:3001
 - **Products MFE**: http://localhost:3002
 - **Cart MFE**: http://localhost:3003
+- **Home MFE**: http://localhost:3004 
 
 ## 🏗️ Arquitectura Module Federation
 
@@ -131,6 +165,7 @@ remotes: {
   header: 'header@http://localhost:3001/remoteEntry.js',
   products: 'products@http://localhost:3002/remoteEntry.js',
   cart: 'cart@http://localhost:3003/remoteEntry.js',
+  home: 'home@http://localhost:3004/remoteEntry.js', 
 }
 ```
 
@@ -141,80 +176,13 @@ exposes: {
 }
 ```
 
-## 💡 Conceptos Clave
 
-1. **Host**: Aplicación que consume los microfrontends
-2. **Remote**: Aplicación que expone componentes
-3. **Shared Dependencies**: React y React-DOM compartidos entre todas las apps
-4. **remoteEntry.js**: Archivo de entrada generado por Module Federation
 
-## 🎨 Personalización para Equipos
 
-Cada equipo puede modificar:
+**Ready for the workshop! 🎉**
 
-### EQUIPO 1 (Header)
-- Archivo: `/header/src/components/Header.js`
-- Ideas: Agregar logo, búsqueda, menú desplegable
+Each team can develop independently and see changes in real-time in the main application.
 
-### EQUIPO 2 (Products)
-- Archivos: 
-  - `/products/src/components/Products.js`
-  - `/products/src/components/ProductCard.js`
-- Ideas: Agregar más productos, filtros, categorías
 
-### EQUIPO 3 (Cart)
-- Archivos:
-  - `/cart/src/components/Cart.js`
-  - `/cart/src/components/CartItem.js`
-- Ideas: Agregar funcionalidad eliminar, actualizar cantidad
 
-## 🔄 Flujo de Trabajo
-
-1. Cada equipo trabaja en su carpeta de forma **independiente**
-2. Los cambios se reflejan en **tiempo real** (hot reload)
-3. El host consume los componentes de forma **dinámica**
-4. No hay necesidad de recompilar todas las aplicaciones
-
-## 🐛 Troubleshooting
-
-### Pantalla en blanco
-
-1. **Verifica el orden de inicio**: Los remotes deben estar corriendo ANTES del host
-2. **Abre la consola del navegador** (F12) y busca errores
-3. **Verifica que todos compilen exitosamente**: Debes ver "webpack compiled successfully" en cada terminal
-4. **Prueba cada MFE individualmente**: Abre cada URL por separado para verificar que funciona
-
-### Error: "Cannot find module 'header/Header'"
-- Verifica que el MFE de header esté corriendo en el puerto 3001
-- Abre http://localhost:3001/remoteEntry.js - debes ver código JavaScript
-- Asegúrate de que todos los MFEs estén ejecutándose **antes** del host
-
-### Error de CORS
-- Asegúrate de que todos los puertos coincidan con la configuración
-- Verifica que webpack-dev-server esté configurado correctamente
-
-### Hot Reload no funciona
-- Reinicia el servidor de desarrollo
-- Limpia la caché del navegador (Cmd+Shift+R / Ctrl+Shift+R)
-
-### Más ayuda
-Consulta el archivo [DEBUGGING.md](./DEBUGGING.md) para más detalles.
-
-## 📚 Recursos
-
-- [Module Federation Docs](https://webpack.js.org/concepts/module-federation/)
-- [React Docs](https://react.dev/)
-- [Webpack 5 Docs](https://webpack.js.org/)
-
-## 🎓 Ejercicios Propuestos
-
-1. **EQUIPO 1**: Agregar un contador de items en el carrito en el header
-2. **EQUIPO 2**: Implementar filtrado por categorías
-3. **EQUIPO 3**: Agregar botones de eliminar y actualizar cantidad
-4. **TODOS**: Compartir un estado global entre MFEs
-
----
-
-**¡Listo para el workshop! 🎉**
-
-Cada equipo puede desarrollar de forma independiente y ver los cambios en tiempo real en la aplicación principal.
+Happy coding! 🚀

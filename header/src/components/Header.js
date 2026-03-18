@@ -15,7 +15,7 @@ const Header = () => {
         justifyContent: 'space-between',
         alignItems: 'center'
       }}>
-        <h1 style={{ fontSize: '24px', margin: 0 }}>🛍️ Mi Tienda MFE</h1>
+        <h1 style={{ fontSize: '24px', margin: 0 }}>🛍️ My MFE Store</h1>
         <nav>
           <ul style={{ 
             listStyle: 'none', 
@@ -37,7 +37,7 @@ const Header = () => {
                 onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.1)'}
                 onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
               >
-                🏠 Inicio
+                🏠 Home
               </a>
             </li>
             <li>
@@ -53,7 +53,7 @@ const Header = () => {
                 onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.1)'}
                 onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
               >
-                🛍️ Productos
+                🛍️ Products
               </a>
             </li>
             <li>
@@ -69,7 +69,7 @@ const Header = () => {
                 onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.1)'}
                 onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
               >
-                🛒 Carrito
+                🛒 Cart
               </a>
             </li>
           </ul>

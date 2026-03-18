@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CartItem from './CartItem';
 
 const Cart = () => {
-  // Productos de ejemplo en el carrito
+  // Example products in cart
   const [cartItems] = useState([
     { id: 1, name: 'Laptop', price: 999, quantity: 1, emoji: '💻' },
     { id: 2, name: 'Mouse', price: 29, quantity: 2, emoji: '🖱️' },
@@ -26,7 +26,7 @@ const Cart = () => {
         borderBottom: '2px solid #f0f0f0',
         paddingBottom: '15px'
       }}>
-        <h2 style={{ color: '#333' }}>🛒 Carrito de Compras</h2>
+        <h2 style={{ color: '#333' }}>🛒 Shopping Cart</h2>
         <span style={{ 
           fontSize: '12px', 
           color: '#666',
@@ -40,7 +40,7 @@ const Cart = () => {
 
       {cartItems.length === 0 ? (
         <p style={{ textAlign: 'center', color: '#999', padding: '40px 0' }}>
-          Tu carrito está vacío
+          Your cart is empty
         </p>
       ) : (
         <>
@@ -78,7 +78,7 @@ const Cart = () => {
           onMouseEnter={(e) => e.target.style.backgroundColor = '#F57C00'}
           onMouseLeave={(e) => e.target.style.backgroundColor = '#FF9800'}
           >
-            Proceder al Pago
+            Proceed to Checkout
           </button>
         </>
       )}

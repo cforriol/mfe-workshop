@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const Home = () => {
   const featuredProducts = [
@@ -31,25 +30,23 @@ const Home = () => {
         <p style={{ fontSize: '20px', marginBottom: '30px', opacity: 0.9 }}>
           Discover amazing deals on thousands of products
         </p>
-        <Link to="/productos" style={{ textDecoration: 'none' }}>
-          <button style={{
-            backgroundColor: 'white',
-            color: '#667eea',
-            border: 'none',
-            padding: '15px 40px',
-            fontSize: '18px',
-            fontWeight: 'bold',
-            borderRadius: '25px',
-            cursor: 'pointer',
-            boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
-            transition: 'transform 0.2s'
-          }}
-          onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-          onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-          >
-            Shop Now →
-          </button>
-        </Link>
+        <button style={{
+          backgroundColor: 'white',
+          color: '#667eea',
+          border: 'none',
+          padding: '15px 40px',
+          fontSize: '18px',
+          fontWeight: 'bold',
+          borderRadius: '25px',
+          cursor: 'pointer',
+          boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
+          transition: 'transform 0.2s'
+        }}
+        onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+        >
+          Shop Now →
+        </button>
       </div>
 
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 20px' }}>
@@ -94,9 +91,9 @@ const Home = () => {
         <section style={{ marginBottom: '50px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
             <h2 style={{ fontSize: '32px', color: '#333' }}>🔥 Hot Deals</h2>
-            <Link to="/productos" style={{ color: '#667eea', textDecoration: 'none', fontSize: '16px' }}>
+            <span style={{ color: '#667eea', cursor: 'pointer', fontSize: '16px' }}>
               View All →
-            </Link>
+            </span>
           </div>
           <div style={{
             display: 'grid',

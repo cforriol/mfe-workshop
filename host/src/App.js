@@ -1,11 +1,11 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
 import ProductsPage from './pages/ProductsPage';
 import CartPage from './pages/CartPage';
 
-// Lazy load el Header
+// Lazy load microfrontends
 const Header = lazy(() => import('header/Header'));
+const Home = lazy(() => import('home/Home'));
 
 // Error Boundary para el Header
 class HeaderErrorBoundary extends React.Component {
@@ -22,7 +22,30 @@ class HeaderErrorBoundary extends React.Component {
     if (this.state.hasError) {
       return (
         <div style={{ padding: '20px', backgroundColor: '#333', color: 'white' }}>
-          <p>⚠️ Error cargando Header. Verifica que esté corriendo en puerto 3001</p>
+          <p>⚠️ Error loading Header. Check it's running on port 3001</p>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+// Error Boundary para Home
+class HomeErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ padding: '40px', textAlign: 'center' }}>
+          <p>⚠️ Error loading Home MFE. Check it's running on port 3004</p>
         </div>
       );
     }
@@ -37,7 +60,7 @@ const App = () => {
         <HeaderErrorBoundary>
           <Suspense fallback={
             <div style={{ padding: '20px', backgroundColor: '#333', color: 'white' }}>
-              Cargando Header...
+              Loading Header...
             </div>
           }>
             <Header />
@@ -46,7 +69,13 @@ const App = () => {
 
         <main>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={
+              <HomeErrorBoundary>
+                <Suspense fallback={<div style={{ padding: '40px', textAlign: 'center' }}>Loading Home...</div>}>
+                  <Home />
+                </Suspense>
+              </HomeErrorBoundary>
+            } />
             <Route path="/productos" element={<ProductsPage />} />
             <Route path="/carrito" element={<CartPage />} />
           </Routes>
