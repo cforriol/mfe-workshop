@@ -77,6 +77,7 @@ const App = () => {
                 </Suspense>
               </HomeErrorBoundary>
             } />
+            <Route path="/deals" element={<Deals />} />
             <Route path="/productos" element={<ProductsPage />} />
             <Route path="/carrito" element={<CartPage />} />
           </Routes>
