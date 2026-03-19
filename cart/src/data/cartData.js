@@ -6,17 +6,17 @@ export const cartItems = [
     name: 'Laptop Pro 15"',
     price: 1299.99,
     quantity: 1,
-    image: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg',
+    image: '/LaptopPro15.jpeg',
     emoji: '💻'
   },
   {
     id: 2,
     productId: 2,
-    name: 'Wireless Mouse',
+    name: 'J. Shirt',
     price: 29.99,
     quantity: 2,
     image: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-02.jpg',
-    emoji: '🖱️'
+    emoji: '👕'
   },
   {
     id: 3,

@@ -1,87 +1,127 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import CartItem from './CartItem';
+import { cartItems as initialCartItems } from '../data/cartData';
+
+const SHIPPING_COST = 15.0;
+const TAX_RATE = 0.08;
 
 const Cart = () => {
-  // Example products in cart
-  const [cartItems] = useState([
-    { id: 1, name: 'Laptop', price: 999, quantity: 1, emoji: '💻' },
-    { id: 2, name: 'Mouse', price: 29, quantity: 2, emoji: '🖱️' },
-  ]);
+  const [cartItems, setCartItems] = useState(initialCartItems);
 
-  const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const handleRemove = (id) => {
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const handleUpdateQuantity = (id, newQuantity) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, quantity: newQuantity } : item
+      )
+    );
+  };
+
+  const summary = useMemo(() => {
+    const subtotal = cartItems.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+    const shipping = cartItems.length > 0 ? SHIPPING_COST : 0;
+    const tax = subtotal * TAX_RATE;
+    const total = subtotal + shipping + tax;
+    const itemsCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+    return { subtotal, shipping, tax, total, itemsCount };
+  }, [cartItems]);
+
+  // Estado vacío
+  if (cartItems.length === 0) {
+    return (
+      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <span className="text-6xl">🛒</span>
+          <h2 className="mt-4 text-2xl font-bold text-gray-900">
+            Tu carrito está vacío
+          </h2>
+          <p className="mt-2 text-gray-500">
+            Parece que aún no has agregado productos a tu carrito.
+          </p>
+          <button className="mt-6 inline-block rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 transition-colors cursor-pointer">
+            Explorar productos
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div style={{ 
-      marginTop: '30px',
-      backgroundColor: 'white',
-      borderRadius: '8px',
-      padding: '20px',
-      boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-    }}>
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        alignItems: 'center',
-        marginBottom: '20px',
-        borderBottom: '2px solid #f0f0f0',
-        paddingBottom: '15px'
-      }}>
-        <h2 style={{ color: '#333' }}>🛒 Shopping Cart</h2>
-        <span style={{ 
-          fontSize: '12px', 
-          color: '#666',
-          backgroundColor: '#e0e0e0',
-          padding: '5px 10px',
-          borderRadius: '4px'
-        }}>
-          [EQUIPO 3 - Cart MFE]
+    <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+      {/* Header */}
+      <div className="flex items-center justify-between border-b border-gray-200 pb-5">
+        <h1 className="text-2xl font-bold tracking-tight text-gray-900">
+          🛒 Carrito de Compras
+        </h1>
+        <span className="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1 text-sm font-medium text-indigo-700">
+          {summary.itemsCount} {summary.itemsCount === 1 ? 'artículo' : 'artículos'}
         </span>
       </div>
 
-      {cartItems.length === 0 ? (
-        <p style={{ textAlign: 'center', color: '#999', padding: '40px 0' }}>
-          Your cart is empty
-        </p>
-      ) : (
-        <>
-          <div style={{ marginBottom: '20px' }}>
-            {cartItems.map(item => (
-              <CartItem key={item.id} item={item} />
+      <div className="mt-8 lg:grid lg:grid-cols-12 lg:gap-x-12">
+        {/* Lista de productos */}
+        <section className="lg:col-span-7">
+          <ul className="divide-y divide-gray-200">
+            {cartItems.map((item) => (
+              <CartItem
+                key={item.id}
+                item={item}
+                onRemove={handleRemove}
+                onUpdateQuantity={handleUpdateQuantity}
+              />
             ))}
-          </div>
+          </ul>
+        </section>
 
-          <div style={{ 
-            borderTop: '2px solid #f0f0f0',
-            paddingTop: '15px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center'
-          }}>
-            <h3 style={{ color: '#333' }}>Total:</h3>
-            <h3 style={{ color: '#4CAF50', fontSize: '24px' }}>
-              ${total.toFixed(2)}
-            </h3>
-          </div>
+        {/* Resumen de compra */}
+        <section className="mt-10 lg:col-span-5 lg:mt-0">
+          <div className="rounded-xl bg-gray-50 px-6 py-6 shadow-sm ring-1 ring-gray-200">
+            <h2 className="text-lg font-semibold text-gray-900">
+              Resumen del pedido
+            </h2>
+            <dl className="mt-6 space-y-4">
+              <div className="flex items-center justify-between">
+                <dt className="text-sm text-gray-600">Subtotal</dt>
+                <dd className="text-sm font-medium text-gray-900">
+                  ${summary.subtotal.toFixed(2)}
+                </dd>
+              </div>
+              <div className="flex items-center justify-between border-t border-gray-200 pt-4">
+                <dt className="text-sm text-gray-600">Envío</dt>
+                <dd className="text-sm font-medium text-gray-900">
+                  ${summary.shipping.toFixed(2)}
+                </dd>
+              </div>
+              <div className="flex items-center justify-between border-t border-gray-200 pt-4">
+                <dt className="text-sm text-gray-600">Impuestos (8%)</dt>
+                <dd className="text-sm font-medium text-gray-900">
+                  ${summary.tax.toFixed(2)}
+                </dd>
+              </div>
+              <div className="flex items-center justify-between border-t-2 border-gray-900 pt-4">
+                <dt className="text-base font-bold text-gray-900">Total</dt>
+                <dd className="text-base font-bold text-gray-900">
+                  ${summary.total.toFixed(2)}
+                </dd>
+              </div>
+            </dl>
 
-          <button style={{
-            width: '100%',
-            backgroundColor: '#FF9800',
-            color: 'white',
-            border: 'none',
-            padding: '15px',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontSize: '16px',
-            fontWeight: 'bold',
-            marginTop: '15px'
-          }}
-          onMouseEnter={(e) => e.target.style.backgroundColor = '#F57C00'}
-          onMouseLeave={(e) => e.target.style.backgroundColor = '#FF9800'}
-          >
-            Proceed to Checkout
-          </button>
-        </>
-      )}
+            <button className="mt-6 w-full rounded-lg bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-indigo-500 transition-colors cursor-pointer">
+              Proceder al pago
+            </button>
+
+            <p className="mt-4 text-center text-xs text-gray-500">
+              Envío gratuito en compras mayores a $100 🚚
+            </p>
+          </div>
+        </section>
+      </div>
     </div>
   );
 };
