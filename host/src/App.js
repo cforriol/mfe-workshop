@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 // Lazy load microfrontends
 const Header = lazy(() => import('header/Header'));
 const Home = lazy(() => import('home/Home'));
+const Deals = lazy(() => import('deals/Deals'));
 
 // Error Boundary para el Header
 class HeaderErrorBoundary extends React.Component {
