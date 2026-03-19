@@ -1,2 +1,8 @@
 @import "tailwindcss";
 
+/* Forzar inclusión de todas las clases base */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+}
