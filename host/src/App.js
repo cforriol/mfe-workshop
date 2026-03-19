@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProductsPage from './pages/ProductsPage';
 import CartPage from './pages/CartPage';
+import Footer from './components/Footer';
 
 // Lazy load microfrontends
 const Header = lazy(() => import('header/Header'));
@@ -81,15 +82,7 @@ const App = () => {
           </Routes>
         </main>
 
-        <footer style={{ 
-          textAlign: 'center', 
-          padding: '20px', 
-          backgroundColor: '#333', 
-          color: 'white',
-          marginTop: '40px'
-        }}>
-          <p>Workshop Module Federation - Host App 🚀</p>
-        </footer>
+        <Footer />
       </div>
     </Router>
   );

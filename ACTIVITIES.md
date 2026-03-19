@@ -127,6 +127,8 @@ export default function Footer() {
 - [Tailwind UI Components](https://tailwindui.com/components)
 - [Tailwind Footer Examples](https://tailwindcss.com/plus/ui-blocks/ecommerce#footers)
 - [Tailwind 404 Pages](https://tailwindcss.com/plus/ui-blocks/marketing#error-pages)
+- [Heroicons](https://heroicons.com/)
+- [Headlessui](https://headlessui.com/)
 
 ---
 
