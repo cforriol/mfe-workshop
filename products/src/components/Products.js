@@ -37,12 +37,48 @@ const products = [
     price: '$35',
     color: 'Iso Dots',
   },
+  {
+    id: 5,
+    name: 'Basic Tee',
+    href: '#',
+    imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg',
+    imageAlt: "Front of men's Basic Tee in black.",
+    price: '$35',
+    color: 'Black',
+  },
+  {
+    id: 6,
+    name: 'Basic Tee',
+    href: '#',
+    imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-02.jpg',
+    imageAlt: "Front of men's Basic Tee in white.",
+    price: '$35',
+    color: 'Aspen White',
+  },
+  {
+    id: 7,
+    name: 'Basic Tee',
+    href: '#',
+    imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-03.jpg',
+    imageAlt: "Front of men's Basic Tee in dark gray.",
+    price: '$35',
+    color: 'Charcoal',
+  },
+  {
+    id: 8,
+    name: 'Artwork Tee',
+    href: '#',
+    imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-04.jpg',
+    imageAlt: "Front of men's Artwork Tee in peach with white and brown dots forming an isometric cube.",
+    price: '$35',
+    color: 'Iso Dots',
+  },
 ]
 
 export default function Example() {
   return (
     <div className="bg-white">
-     
+      
     </div>
   )
 }
