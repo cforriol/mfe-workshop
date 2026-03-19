@@ -6,7 +6,7 @@ export const productsData = [
     price: 1299.99,
     category: 'Electronics',
     description: 'Powerful laptop for professionals',
-    image: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg',
+    image: 'https://tailwi  ndcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg',
     stock: 15,
     rating: 4.5,
     discount: 0
