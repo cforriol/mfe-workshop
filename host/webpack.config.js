@@ -48,6 +48,7 @@ module.exports = {
         products: 'products@http://localhost:3002/remoteEntry.js',
         cart: 'cart@http://localhost:3003/remoteEntry.js',
         home: 'home@http://localhost:3004/remoteEntry.js',
+        deals: 'deals@http://localhost:3005/remoteEntry.js'
       },
       shared: {
         react: { singleton: true, requiredVersion: '^18.2.0' },

@@ -5,7 +5,7 @@ module.exports = {
   mode: 'development',
   entry: './src/index.js',
   devServer: {
-    port: 3003,
+    port: 3005,
     historyApiFallback: true,
   },
   module: {
@@ -42,10 +42,10 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'cart',
+      name: 'deals',
       filename: 'remoteEntry.js',
       exposes: {
-        './Cart': './src/components/index'
+        './Deals': './src/components/Deals'
       },
       shared: {
         react: { singleton: true, requiredVersion: '^18.2.0' },
