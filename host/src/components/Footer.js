@@ -37,7 +37,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/ofertas" className="text-gray-400 hover:text-white transition text-sm">
+                <a href="/deals" className="text-gray-400 hover:text-white transition text-sm">
                   Special Offers
                 </a>
               </li>

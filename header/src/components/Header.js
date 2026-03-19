@@ -13,7 +13,7 @@ const navigation = [
   { name: '🏠 Inicio', href: '/' },
   { name: '🛍️ Productos', href: '/productos' },
   { name: '🛒 Carrito', href: '/carrito' },
-  { name: '🎁 Ofertas', href: '/ofertas' },
+  { name: '🎁 Ofertas', href: '/deals' },
 ]
 
 const Header = () => {

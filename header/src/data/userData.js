@@ -15,6 +15,6 @@ export const navigationLinks = [
   { id: 1, name: 'Home', path: '/', icon: '🏠' },
   { id: 2, name: 'Products', path: '/productos', icon: '🛍️' },
   { id: 3, name: 'Cart', path: '/carrito', icon: '🛒' },
-  { id: 4, name: 'Offers', path: '/ofertas', icon: '🎁' },
+  { id: 4, name: 'Offers', path: '/deals', icon: '🎁' },
   { id: 5, name: 'Profile', path: '/perfil', icon: '👤' }
 ];
