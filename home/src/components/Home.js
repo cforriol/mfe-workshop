@@ -46,6 +46,24 @@ const Home = () => {
     setActiveSlide((prev) => (prev + 1) % heroBanners.length);
   
   const currentBanner = heroBanners[activeSlide];
+
+// Countdown timer: 2 days in seconds
+  const TWO_DAYS_IN_SECONDS = 2 * 24 * 60 * 60;
+  const [timeLeft, setTimeLeft] = useState(TWO_DAYS_IN_SECONDS);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+    return () => clearInterval(timer); // cleanup to avoid memory leaks
+  }, []);
+
+  const hours   = Math.floor(timeLeft / 3600);
+  const minutes = Math.floor((timeLeft % 3600) / 60);
+  const seconds = timeLeft % 60;
+  const pad = (n) => String(n).padStart(2, '0');
+
+
   const featuredProducts = [
     { id: 1, name: 'Wireless Headphones', price: 79.99, emoji: '🎧', discount: 20 },
     { id: 2, name: 'Smart Watch', price: 199.99, emoji: '⌚', discount: 15 },
@@ -167,8 +185,29 @@ const Home = () => {
 
         {/* Featured Offers */}
         <section style={{ marginBottom: '50px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
-            <h2 style={{ fontSize: '32px', color: '#333' }}>🔥 Hot Deals</h2>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
+            <div>
+              <h2 style={{ fontSize: '32px', color: '#333', marginBottom: '8px' }}>🔥 Hot Deals
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                backgroundColor: '#FFF3E0',
+                border: '1px solid #FF9800',
+                borderRadius: '8px',
+                padding: '16px 14px',
+                fontSize: '15px',
+                color: '#E65100',
+                fontWeight: 'bold',
+                marginLeft: '20px'
+              }}>
+                ⏱️ Ends in:
+                <span style={{ fontVariantNumeric: 'tabular-nums', letterSpacing: '1px' }}>
+                  {pad(hours)}:{pad(minutes)}:{pad(seconds)}
+                </span>
+              </div>
+              </h2>
+            </div>
             <span style={{ color: '#667eea', cursor: 'pointer', fontSize: '16px' }}>
               View All →
             </span>
