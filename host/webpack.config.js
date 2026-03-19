@@ -50,7 +50,8 @@ module.exports = {
                 home: "home@http://localhost:3004/remoteEntry.js",
                 dragoniteAndaluz:
                     "dragoniteAndaluz@http://localhost:3999/remoteEntry.js",
-            },
+              deals: 'deals@http://localhost:3005/remoteEntry.js'
+      },
             shared: {
                 react: { singleton: true, requiredVersion: "^18.2.0" },
                 "react-dom": { singleton: true, requiredVersion: "^18.2.0" },

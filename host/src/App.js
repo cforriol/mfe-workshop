@@ -10,6 +10,7 @@ const Home = lazy(() => import("home/Home"));
 const DragoniteAndaluz = lazy(
     () => import("dragoniteAndaluz/DragoniteAndaluz"),
 );
+const Deals = lazy(() => import('deals/Deals'));
 
 // Error Boundary para el Header
 class HeaderErrorBoundary extends React.Component {
@@ -151,33 +152,20 @@ const App = () => {
                     </Suspense>
                 </DragoniteAndaluzErrorBoundary>
 
-                <main>
-                    <Routes>
-                        <Route
-                            path="/"
-                            element={
-                                <HomeErrorBoundary>
-                                    <Suspense
-                                        fallback={
-                                            <div
-                                                style={{
-                                                    padding: "40px",
-                                                    textAlign: "center",
-                                                }}
-                                            >
-                                                Loading Home...
-                                            </div>
-                                        }
-                                    >
-                                        <Home />
-                                    </Suspense>
-                                </HomeErrorBoundary>
-                            }
-                        />
-                        <Route path="/productos" element={<ProductsPage />} />
-                        <Route path="/carrito" element={<CartPage />} />
-                    </Routes>
-                </main>
+        <main>
+          <Routes>
+            <Route path="/" element={
+              <HomeErrorBoundary>
+                <Suspense fallback={<div style={{ padding: '40px', textAlign: 'center' }}>Loading Home...</div>}>
+                  <Home />
+                </Suspense>
+              </HomeErrorBoundary>
+            } />
+            <Route path="/deals" element={<Deals />} />
+            <Route path="/productos" element={<ProductsPage />} />
+            <Route path="/carrito" element={<CartPage />} />
+          </Routes>
+        </main>
 
                 <Footer />
             </div>
