@@ -92,6 +92,7 @@ const Home = () => {
         }}
           onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
           onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+          onClick={() => window.location.href = '/productos'}
         >
           {currentBanner.cta}
         </button>
@@ -155,6 +156,7 @@ const Home = () => {
                 e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
               }}
+              onClick={() => window.location.href = `/productos?category=${category.name}`}
               >
                 <div style={{ fontSize: '48px', marginBottom: '10px' }}>{category.emoji}</div>
                 <h3 style={{ color: '#333', fontSize: '16px' }}>{category.name}</h3>
