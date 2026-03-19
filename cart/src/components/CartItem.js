@@ -27,22 +27,30 @@ const CartItem = ({ item, onRemove, onUpdateQuantity }) => {
         </div>
 
         <div className="mt-4 flex items-center justify-between">
-          <div className="flex items-center rounded-lg border border-gray-300">
-            <button
-              onClick={() => onUpdateQuantity(item.id, Math.max(1, item.quantity - 1))}
-              className="px-3 py-1 text-gray-600 hover:bg-gray-100 transition-colors rounded-l-lg cursor-pointer"
-            >
-              −
-            </button>
-            <span className="px-4 py-1 text-sm font-medium text-gray-900 border-x border-gray-300">
-              {item.quantity}
-            </span>
-            <button
-              onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
-              className="px-3 py-1 text-gray-600 hover:bg-gray-100 transition-colors rounded-r-lg cursor-pointer"
-            >
-              +
-            </button>
+          <div>
+            <div className="flex items-center rounded-lg border border-gray-300">
+              <button
+                onClick={() => onUpdateQuantity(item.id, Math.max(1, item.quantity - 1))}
+                className="px-3 py-1 text-gray-600 hover:bg-gray-100 transition-colors rounded-l-lg cursor-pointer"
+              >
+                −
+              </button>
+              <span className="px-4 py-1 text-sm font-medium text-gray-900 border-x border-gray-300">
+                {item.quantity}
+              </span>
+              <button
+                onClick={() => onUpdateQuantity(item.id, item.quantity < item.stock ? item.quantity + 1 : item.quantity)}
+                disabled={item.quantity >= item.stock}
+                className="px-3 py-1 text-gray-600 hover:bg-gray-100 transition-colors rounded-r-lg disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+              >
+                +
+              </button>
+            </div>
+            {item.stock && (
+              <p className="mt-1 text-xs text-gray-500">
+                Stock: {item.stock} disponibles
+              </p>
+            )}
           </div>
 
           <button
