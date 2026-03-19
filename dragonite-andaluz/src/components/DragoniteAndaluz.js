@@ -43,7 +43,7 @@ const DragoniteAndaluz = ({ open, onClose }) => {
                     ✕
                 </button>
                 <img
-                    src="http://localhost:3999/assets/dragonite.webp"
+                    src="https://s1.abcstatics.com/abc/www/multimedia/espana/2024/03/01/pokemon-gala-andalucia-RtosgJBbW3A5VV6EWlEpVYO-1200x840@diario_abc.jpg"
                     alt="Dragonite Andaluz"
                     style={{
                         display: "block",

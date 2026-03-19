@@ -119,29 +119,26 @@ const App = () => {
                     </Suspense>
                 </HeaderErrorBoundary>
 
-                <div
+                <button
+                    onClick={() => setDragoniteOpen(true)}
                     style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        padding: "16px",
+                        position: "fixed",
+                        bottom: "24px",
+                        left: "24px",
+                        backgroundColor: "#f97316",
+                        color: "white",
+                        border: "none",
+                        padding: "12px 28px",
+                        fontSize: "16px",
+                        fontWeight: "bold",
+                        borderRadius: "8px",
+                        cursor: "pointer",
+                        boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+                        zIndex: 999,
                     }}
                 >
-                    <button
-                        onClick={() => setDragoniteOpen(true)}
-                        style={{
-                            backgroundColor: "#f97316",
-                            color: "white",
-                            border: "none",
-                            padding: "12px 28px",
-                            fontSize: "16px",
-                            fontWeight: "bold",
-                            borderRadius: "8px",
-                            cursor: "pointer",
-                        }}
-                    >
-                        🐉 Dragonite Andaluz
-                    </button>
-                </div>
+                    🐉
+                </button>
 
                 <DragoniteAndaluzErrorBoundary>
                     <Suspense fallback={null}>
