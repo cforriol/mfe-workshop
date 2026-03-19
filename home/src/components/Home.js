@@ -1,6 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+
 
 const Home = () => {
+  // --- Carousel: slide data ---
+  const heroBanners = [
+    {
+      id: 1,
+      title: '🎉 Spring Sale - Up to 50% Off!',
+      subtitle: 'Discover amazing deals on thousands of products',
+      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      cta: 'Shop Now →',
+    },
+    {
+      id: 2,
+      title: '🔥 Flash Sale — Today Only!',
+      subtitle: 'Electronics, fashion, home & more — grab it before it\'s gone',
+      background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+      cta: 'View Deals →',
+    },
+    {
+      id: 3,
+      title: '🚚 Free Shipping on Orders Over $50',
+      subtitle: 'Shop more, pay less — fast delivery to your door',
+      background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+      cta: 'Start Shopping →',
+    },
+  ];
+  
+  // useState: track the active slide index
+  const [activeSlide, setActiveSlide] = useState(0);
+  
+  // useEffect + setInterval: auto-advance every 4 seconds
+  // The cleanup function (return) clears the interval to avoid memory leaks
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % heroBanners.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [heroBanners.length]);
+  
+  const prevSlide = () =>
+    setActiveSlide((prev) => (prev - 1 + heroBanners.length) % heroBanners.length);
+  const nextSlide = () =>
+    setActiveSlide((prev) => (prev + 1) % heroBanners.length);
+  
+  const currentBanner = heroBanners[activeSlide];
   const featuredProducts = [
     { id: 1, name: 'Wireless Headphones', price: 79.99, emoji: '🎧', discount: 20 },
     { id: 2, name: 'Smart Watch', price: 199.99, emoji: '⌚', discount: 15 },
@@ -17,18 +62,21 @@ const Home = () => {
 
   return (
     <div style={{ backgroundColor: '#f5f5f5', minHeight: '100vh' }}>
-      {/* Hero Banner */}
+            {/* Hero Banner Carousel */}
       <div style={{
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        position: 'relative',
+        background: currentBanner.background,
         padding: '60px 20px',
         color: 'white',
-        textAlign: 'center'
+        textAlign: 'center',
+        transition: 'background 0.6s ease',
+        overflow: 'hidden',
       }}>
         <h1 style={{ fontSize: '48px', marginBottom: '20px', fontWeight: 'bold' }}>
-          🎉 Spring Sale - Up to 50% Off!
+          {currentBanner.title}
         </h1>
         <p style={{ fontSize: '20px', marginBottom: '30px', opacity: 0.9 }}>
-          Discover amazing deals on thousands of products
+          {currentBanner.subtitle}
         </p>
         <button style={{
           backgroundColor: 'white',
@@ -40,13 +88,41 @@ const Home = () => {
           borderRadius: '25px',
           cursor: 'pointer',
           boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
-          transition: 'transform 0.2s'
+          transition: 'transform 0.2s',
         }}
-        onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+          onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+          onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
         >
-          Shop Now →
+          {currentBanner.cta}
         </button>
+
+        {/* Prev / Next arrows */}
+        <button onClick={prevSlide} style={{
+          position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)',
+          background: 'rgba(255,255,255,0.25)', border: 'none', borderRadius: '50%',
+          width: '44px', height: '44px', fontSize: '20px', cursor: 'pointer', color: 'white',
+        }}>‹</button>
+        <button onClick={nextSlide} style={{
+          position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)',
+          background: 'rgba(255,255,255,0.25)', border: 'none', borderRadius: '50%',
+          width: '44px', height: '44px', fontSize: '20px', cursor: 'pointer', color: 'white',
+        }}>›</button>
+
+        {/* Dot indicators */}
+        <div style={{ marginTop: '25px', display: 'flex', justifyContent: 'center', gap: '10px' }}>
+          {heroBanners.map((_, idx) => (
+            <button key={idx} onClick={() => setActiveSlide(idx)} style={{
+              width: idx === activeSlide ? '24px' : '10px',
+              height: '10px',
+              borderRadius: '5px',
+              border: 'none',
+              backgroundColor: idx === activeSlide ? 'white' : 'rgba(255,255,255,0.5)',
+              cursor: 'pointer',
+              transition: 'all 0.3s',
+              padding: 0,
+            }} />
+          ))}
+        </div>
       </div>
 
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 20px' }}>
