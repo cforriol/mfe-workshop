@@ -3,7 +3,7 @@ export const userData = {
   id: 1,
   name: 'Carlos Forriol',
   email: 'carlos@example.com',
-  avatar: 'https://ui-avatars.com/api/?name=Carlos+Forriol&background=667eea&color=fff',
+  avatar: 'https://s1.abcstatics.com/abc/www/multimedia/espana/2024/03/01/meme-dragonite-andaluz-U87242858207gif-760x427@diario_abc.jpg',
   isLoggedIn: true,
   cartItemsCount: 4,
   wishlistCount: 12,
